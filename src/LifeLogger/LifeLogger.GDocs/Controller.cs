@@ -1,10 +1,12 @@
-﻿using System.Linq;
-using Google.GData.Spreadsheets;
-using System;
-using System.Globalization;
-
-namespace LifeLogger.GDocs
+﻿namespace LifeLogger.GDocs
 {
+    using System;
+    using System.Linq;
+    using System.Diagnostics;
+    using System.Globalization;
+
+    using Google.GData.Spreadsheets;
+
     public class Controller
     {
         private readonly CultureInfo _culture = new CultureInfo("en-US");
@@ -14,39 +16,50 @@ namespace LifeLogger.GDocs
         {
             _service.setUserCredentials(username, password);
         }
-        
+
+
         public SpreadsheetEntry GetSpreadsheet(string name)
         {
             var query = new SpreadsheetQuery();
             var feed = _service.Query(query);
-            SpreadsheetEntry spreadsheet = null;
+            var spreadsheet = default(SpreadsheetEntry);
 
-            foreach (var entry in feed.Entries.Cast<SpreadsheetEntry>().Where(entry => entry.Title.Text.Equals(name)))
+            foreach (SpreadsheetEntry entry in feed.Entries.Cast<SpreadsheetEntry>().Where(entry => entry.Title.Text.Equals(name)))
                 return entry;
 
             //TODO: Parece que nao é assim que se cria uma nova Spreadsheet!!!
-            Console.WriteLine("Spreadsheet not fround. Creating...");
+            Debug.WriteLine("Spreadsheet not found. Creating...");
+
             spreadsheet = new SpreadsheetEntry {Title = {Text = name}};
-            feed.Insert(spreadsheet);
-            return spreadsheet;
+
+            return feed.Insert(spreadsheet);
         }
 
-        
+
         public WorksheetEntry GetCurrentWorksheet(SpreadsheetEntry spreadsheet)
         {
-            string currentDate = String.Format("{0} {1}", DateTime.Now.ToString("MMMM", _culture),
+            var currentDate = String.Format("{0} {1}", DateTime.Now.ToString("MMMM", _culture),
                                                DateTime.Now.ToString("yyyy", _culture));
-            WorksheetFeed wsFeed = spreadsheet.Worksheets;
-            WorksheetEntry worksheet = null;
+            var wsFeed = spreadsheet.Worksheets;
+            var worksheet = default(WorksheetEntry);
 
-            foreach (var entry in wsFeed.Entries.Cast<WorksheetEntry>().Where(entry => entry.Title.Text.Equals(currentDate)))
+            foreach (WorksheetEntry entry in wsFeed.Entries.Cast<WorksheetEntry>().Where(entry => entry.Title.Text.Equals(currentDate)))
                 return entry;
 
-            Console.WriteLine("Worksheet not found. Creating!!!");
+            Debug.WriteLine("Worksheet not found. Creating!!!");
+
             var numberOfDays = (uint)DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
             worksheet = new WorksheetEntry(2, numberOfDays) {Title = {Text = currentDate}};
-            wsFeed.Insert(worksheet);
-            //TODO Aqui tem que se intrdozir uma row com 1,2,3,4,5,...,31
+            worksheet = _service.Insert(wsFeed, worksheet);
+
+            var cellQuery = new CellQuery(worksheet.CellFeedLink);
+            var cellFeed = _service.Query(cellQuery);
+
+            for (var i = 1; i <= numberOfDays; i++)
+            {
+                cellFeed.Insert(new CellEntry(1, (uint)i, i.ToString(CultureInfo.InvariantCulture)));
+            }
+
             return worksheet;
         }
 
@@ -56,7 +69,7 @@ namespace LifeLogger.GDocs
             var cellQuery = new CellQuery(worksheet.CellFeedLink);
             var cellFeed = _service.Query(cellQuery);
 
-            uint currentColumn = 0;
+            uint currentColumn = 0; 
             uint currentRow = 0;
 
             foreach (CellEntry c in cellFeed.Entries)
@@ -70,14 +83,14 @@ namespace LifeLogger.GDocs
                     currentRow = c.Row;
             }
 
-            //Caso nao exista uma linha livre!!
             if (currentRow >= worksheet.Rows)
             {
                 worksheet.Rows += 1;
                 worksheet.Update();
             }
 
-            Console.WriteLine("Inserting on Row:{0}, Column:{1}", currentRow + 1, currentColumn);
+            Debug.WriteLine("Inserting on Row:{0}, Column:{1}", currentRow + 1, currentColumn);
+
             var cell = new CellEntry(currentRow + 1, currentColumn, text);
             cellFeed.Insert(cell);
         }

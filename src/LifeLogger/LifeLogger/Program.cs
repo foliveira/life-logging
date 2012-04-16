@@ -1,4 +1,8 @@
-﻿namespace LifeLogger
+﻿using System.Collections.Generic;
+using LifeLogger.UI.Mediators;
+using System.Linq;
+
+namespace LifeLogger
 {
     using System;
     using System.Windows.Forms;
@@ -6,6 +10,8 @@
 
     static class Program
     {
+        private static readonly IList<IMediator> Mediators = new List<IMediator>();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -14,12 +20,28 @@
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoggerWindow());
+
+            RegisterMediators();
+
+            Application.Run(GetMainFormFromMediators());
         }
 
         private static void RegisterMediators()
         {
-            
+            Mediators.Add(new LoggerWindowMediator(new LoggerWindow(), true));
+        }
+
+        private static Form GetMainFormFromMediators()
+        {
+            var mediators = Mediators.Where(m => m.IsMainForm).ToArray();
+
+            if(mediators == null)
+                throw new Exception("Mediator with MainForm not found");
+
+            if(mediators.Length > 1)
+                throw new Exception("More than one MainForm found");
+
+            return mediators.First().MediatingForm;
         }
     }
 }

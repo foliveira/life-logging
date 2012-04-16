@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\WindowsShell.cs" />
     <Compile Include="UI\LogerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +57,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Mediators\IMediator.cs" />
     <Compile Include="UI\Mediators\LoggerWindowMediator.cs" />
     <EmbeddedResource Include="UI\LogerWindow.resx">
       <DependentUpon>LogerWindow.cs</DependentUpon>
