@@ -1,2 +1,7 @@
 
 *.suo
+/src/LifeLogger/_ReSharper.LifeLogger
+/src/LifeLogger/LifeLogger/obj
+/src/LifeLogger/LifeLogger/bin
+/src/LifeLogger/LifeLogger.GDocs/obj
+/src/LifeLogger/LifeLogger.GDocs/bin
