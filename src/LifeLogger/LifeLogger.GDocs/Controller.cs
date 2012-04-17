@@ -9,7 +9,6 @@
 
     public class Controller
     {
-        private readonly CultureInfo _culture = new CultureInfo("en-US");
         private readonly SpreadsheetsService _service = new SpreadsheetsService("MySpreadsheetIntegration-v1");
 
         public Controller(string username, string password)
@@ -38,8 +37,8 @@
 
         public WorksheetEntry GetCurrentWorksheet(SpreadsheetEntry spreadsheet)
         {
-            var currentDate = String.Format("{0} {1}", DateTime.Now.ToString("MMMM", _culture),
-                                               DateTime.Now.ToString("yyyy", _culture));
+            var currentDate = String.Format("{0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture),
+                                               DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture));
             var wsFeed = spreadsheet.Worksheets;
             var worksheet = default(WorksheetEntry);
 

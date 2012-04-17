@@ -40,7 +40,7 @@ namespace LifeLogger.UI
                                                                           "fabiogvipjoao");
                                           var se = ctrl.GetSpreadsheet("LifeLogger");
                                           var ws = ctrl.GetCurrentWorksheet(se);
-                                          ctrl.InsertRecord(ws, DateTime.Now.Day.ToString(CultureInfo.InvariantCulture), logTextBox.Text);
+                                          ctrl.InsertRecord(ws, DateTime.Now.Day.ToString(CultureInfo.InvariantCulture), String.Format("{0} #{1}#", logTextBox.Text, DateTime.Now.ToLongTimeString()));
 
                                           /* 
                                            * Since the GUI objects can only be changed in their creator thread,
