@@ -36,11 +36,17 @@ namespace LifeLogger.UI
 
             Task.Factory.StartNew(() =>
                                       {
-                                          var ctrl = new GDocs.Controller("lifelogger2012@gmail.com",
-                                                                          "fabiogvipjoao");
+                                          var ctrl = new GDocs.Controller("lifelogger2012@gmail.com","fabiogvipjoao");
+
                                           var se = ctrl.GetSpreadsheet("LifeLogger");
+                                          if (se == null) se = ctrl.CreateSpreadsheet("LifeLogger");
+
                                           var ws = ctrl.GetCurrentWorksheet(se);
-                                          ctrl.InsertRecord(ws, DateTime.Now.Day.ToString(CultureInfo.InvariantCulture), String.Format("{0} #{1}#", logTextBox.Text, DateTime.Now.ToLongTimeString()));
+                                          if (ws == null) ws = ctrl.CreateWorksheet(se, String.Format("{0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture),
+                                                                                                                 DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture)));
+
+                                          ctrl.InsertRecord(ws, DateTime.Now.Day.ToString(CultureInfo.InvariantCulture), String.Format("{0} #{1}#", logTextBox.Text, 
+                                                                                                                                                    DateTime.Now.ToLongTimeString()));
 
                                           /* 
                                            * Since the GUI objects can only be changed in their creator thread,

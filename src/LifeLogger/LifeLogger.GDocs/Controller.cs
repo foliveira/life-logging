@@ -21,17 +21,18 @@
         {
             var query = new SpreadsheetQuery();
             var feed = _service.Query(query);
-            var spreadsheet = default(SpreadsheetEntry);
 
             foreach (SpreadsheetEntry entry in feed.Entries.Cast<SpreadsheetEntry>().Where(entry => entry.Title.Text.Equals(name)))
                 return entry;
 
-            //TODO: Parece que nao é assim que se cria uma nova Spreadsheet!!!
-            Debug.WriteLine("Spreadsheet not found. Creating...");
+            Debug.WriteLine("Spreadsheet not found.");
+            return null;
+        }
 
-            spreadsheet = new SpreadsheetEntry {Title = {Text = name}};
-
-            return feed.Insert(spreadsheet);
+        public SpreadsheetEntry CreateSpreadsheet(string name)
+        {
+            //TODO
+            return new SpreadsheetEntry();
         }
 
 
@@ -39,18 +40,27 @@
         {
             var currentDate = String.Format("{0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture),
                                                DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture));
+
             var wsFeed = spreadsheet.Worksheets;
-            var worksheet = default(WorksheetEntry);
 
             foreach (WorksheetEntry entry in wsFeed.Entries.Cast<WorksheetEntry>().Where(entry => entry.Title.Text.Equals(currentDate)))
                 return entry;
 
-            Debug.WriteLine("Worksheet not found. Creating!!!");
+            Debug.WriteLine("Worksheet not found.");
+            return null;
+        }
 
+        public WorksheetEntry CreateWorksheet(SpreadsheetEntry spreadsheet, string name)
+        {
             var numberOfDays = (uint)DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
-            worksheet = new WorksheetEntry(2, numberOfDays) {Title = {Text = currentDate}};
+
+            var wsFeed = spreadsheet.Worksheets;
+
+            var worksheet = new WorksheetEntry(2, numberOfDays) { Title = { Text = name } };
             worksheet = _service.Insert(wsFeed, worksheet);
 
+
+            //Insert First Line
             var cellQuery = new CellQuery(worksheet.CellFeedLink);
             var cellFeed = _service.Query(cellQuery);
 
@@ -58,7 +68,6 @@
             {
                 cellFeed.Insert(new CellEntry(1, (uint)i, i.ToString(CultureInfo.InvariantCulture)));
             }
-
             return worksheet;
         }
 
