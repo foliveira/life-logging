@@ -73,5 +73,11 @@ namespace LifeLogger.UI
         {
             WindowsShell.UnregisterHotKey(this);
         }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Program.GetForm<SettingsWindow>().Show();
+        }
     }
 }

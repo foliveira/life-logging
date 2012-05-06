@@ -31,6 +31,7 @@
             this.sendButton = new System.Windows.Forms.Button();
             this.logTextBox = new System.Windows.Forms.TextBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.settingsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // sendButton
@@ -60,12 +61,23 @@
             this.progressBar1.TabIndex = 2;
             this.progressBar1.Visible = false;
             // 
+            // settingsButton
+            // 
+            this.settingsButton.Location = new System.Drawing.Point(501, 12);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(75, 23);
+            this.settingsButton.TabIndex = 3;
+            this.settingsButton.Text = "Settings";
+            this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
             // LoggerWindow
             // 
             this.AcceptButton = this.sendButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 47);
+            this.ClientSize = new System.Drawing.Size(588, 47);
+            this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.logTextBox);
             this.Controls.Add(this.sendButton);
@@ -86,6 +98,7 @@
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.TextBox logTextBox;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button settingsButton;
     }
 }
 
