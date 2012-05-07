@@ -22,6 +22,14 @@ namespace LifeLogger.UI
             Program.GetForm<LoggerWindow>().Show();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Program.Settings.SetUsername(EmaiTextBox.Text);
+            Program.Settings.SetPassword(PasswordTextBox.Text);
+            this.Hide();
+            Program.GetForm<LoggerWindow>().Show();
+        }
+
 
 
 

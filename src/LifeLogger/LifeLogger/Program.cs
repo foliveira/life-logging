@@ -12,6 +12,9 @@ namespace LifeLogger
     {
         private static readonly IList<IMediator> Mediators = new List<IMediator>();
 
+        //Deserialize!! If Error, create New
+        public static Settings Settings = new Settings();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

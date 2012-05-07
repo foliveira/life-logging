@@ -36,7 +36,8 @@ namespace LifeLogger.UI
 
             Task.Factory.StartNew(() =>
                                       {
-                                          var ctrl = new GDocs.Controller("lifelogger2012@gmail.com","fabiogvipjoao");
+                                          //"lifelogger2012@gmail.com","fabiogvipjoao"
+                                          var ctrl = new GDocs.Controller(Program.Settings.GetUsername(), Program.Settings.GetPassword());
 
                                           var se = ctrl.GetSpreadsheet("LifeLogger");
                                           if (se == null) se = ctrl.CreateSpreadsheet("LifeLogger");
