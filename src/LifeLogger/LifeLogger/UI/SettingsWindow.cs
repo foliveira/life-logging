@@ -16,22 +16,20 @@ namespace LifeLogger.UI
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button2Click(object sender, EventArgs e)
         {
             this.Hide();
             Program.GetForm<LoggerWindow>().Show();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1Click(object sender, EventArgs e)
         {
-            Program.Settings.SetUsername(EmaiTextBox.Text);
-            Program.Settings.SetPassword(PasswordTextBox.Text);
+            Program.Settings.Username = EmaiTextBox.Text;
+            Program.Settings.Password = PasswordTextBox.Text;
+
             this.Hide();
+
             Program.GetForm<LoggerWindow>().Show();
         }
-
-
-
-
     }
 }

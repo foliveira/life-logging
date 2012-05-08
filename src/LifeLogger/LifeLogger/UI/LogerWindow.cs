@@ -36,17 +36,23 @@ namespace LifeLogger.UI
 
             Task.Factory.StartNew(() =>
                                       {
-                                          //"lifelogger2012@gmail.com","fabiogvipjoao"
-                                          var ctrl = new GDocs.Controller(Program.Settings.GetUsername(), Program.Settings.GetPassword());
+                                          var ctrl = new GDocs.Controller(Program.Settings.Username, Program.Settings.Password);
 
-                                          var se = ctrl.GetSpreadsheet("LifeLogger");
-                                          if (se == null) se = ctrl.CreateSpreadsheet("LifeLogger");
+                                          var se = ctrl.GetSpreadsheet("LifeLogger") ??
+                                                   ctrl.CreateSpreadsheet("LifeLogger");
 
-                                          var ws = ctrl.GetCurrentWorksheet(se);
-                                          if (ws == null) ws = ctrl.CreateWorksheet(se, String.Format("{0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture),
-                                                                                                                 DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture)));
+                                          var ws = ctrl.GetCurrentWorksheet(se) ??
+                                                   ctrl.CreateWorksheet(se, String.Format("{0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture),
+                                                                                                                          DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture)));
 
-                                          ctrl.InsertRecord(ws, DateTime.Now.Day.ToString(CultureInfo.InvariantCulture), String.Format("{0} #{1}#", logTextBox.Text, 
+                                          var log = logTextBox.Text.Split(' ');
+
+                                          var ua = Program.Settings.GetActionForShortcut(log[0]) ??
+                                                   Program.Settings.AddAction(log[0]);
+
+                                          var finalLog = String.Format("{0} {1}", ua.ActionName,
+                                                                       String.Join(" ", log, 1, log.Length - 1));
+                                          ctrl.InsertRecord(ws, DateTime.Now.Day.ToString(CultureInfo.InvariantCulture), String.Format("{0} #{1}#", finalLog, 
                                                                                                                                                     DateTime.Now.ToLongTimeString()));
 
                                           /* 

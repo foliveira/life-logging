@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using LifeLogger.Properties;
 using LifeLogger.UI.Mediators;
 using System.Linq;
 
@@ -13,7 +14,7 @@ namespace LifeLogger
         private static readonly IList<IMediator> Mediators = new List<IMediator>();
 
         //Deserialize!! If Error, create New
-        public static Settings Settings = new Settings();
+        public static LoggerSettings Settings = new LoggerSettings();
 
         /// <summary>
         /// The main entry point for the application.
@@ -50,16 +51,15 @@ namespace LifeLogger
 
         public static T GetForm<T>() where T : Form
         {
-            var mediators = Mediators.Where(m => m.MediatingForm.GetType().Equals(typeof(T)));
+            var mediators = Mediators.Where(m => m.MediatingForm.GetType() == typeof(T));
 
             if(mediators == null)
                 throw new Exception("Mediator with MainForm not found");
 
-            if(mediators.Count() > 1)
-                throw new Exception("More than one MainForm found");
-
-            return (T)mediators.First().MediatingForm;
-}
+            var form = mediators.FirstOrDefault();
+            
+            return (form != null) ? (T)form.MediatingForm : null;
+        }
 
     }
 }
