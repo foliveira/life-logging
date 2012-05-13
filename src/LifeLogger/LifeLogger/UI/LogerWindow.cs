@@ -26,8 +26,8 @@ namespace LifeLogger.UI
         {
             InitializeComponent();
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-
             WindowsShell.RegisterHotKey(this, Keys.Control | Keys.Alt | Keys.L);
+            
         }
 
         private void Button1Click(object sender, EventArgs e)
@@ -47,13 +47,34 @@ namespace LifeLogger.UI
 
                                           var log = logTextBox.Text.Split(' ');
 
-                                          var ua = Program.Settings.GetActionForShortcut(log[0]) ??
-                                                   Program.Settings.AddAction(log[0]);
+                                          bool keep = true;
 
-                                          var finalLog = String.Format("{0} {1}", ua.ActionName,
-                                                                       String.Join(" ", log, 1, log.Length - 1));
-                                          ctrl.InsertRecord(ws, DateTime.Now.Day.ToString(CultureInfo.InvariantCulture), String.Format("{0} #{1}#", finalLog, 
-                                                                                                                                                    DateTime.Now.ToLongTimeString()));
+                                          var ua = Program.Settings.GetActionForShortcut(log[0]);
+                                          if (ua == null)
+                                          {
+                                              DialogResult result;
+                                              result = MessageBox.Show(String.Format("Action \"{0}\" is not defined. Do you wish do add it?", log[0]),
+                                                  "Attention", 
+                                                  MessageBoxButtons.YesNo, 
+                                                  MessageBoxIcon.Question);
+
+                                              if (result == DialogResult.No)
+                                              {
+                                                  keep = false;
+                                              }
+                                              if (result == DialogResult.Yes)
+                                              {
+                                                  Program.Settings.AddAction(log[0]);
+                                              }
+                                          }
+
+                                          if (keep)
+                                          {
+                                              var finalLog = String.Format("{0} {1}", ua.ActionName,
+                                                                           String.Join(" ", log, 1, log.Length - 1));
+                                              ctrl.InsertRecord(ws, DateTime.Now.Day.ToString(CultureInfo.InvariantCulture), String.Format("{0} #{1}#", finalLog,
+                                                                                                                                                        DateTime.Now.ToLongTimeString()));
+                                          }
 
                                           /* 
                                            * Since the GUI objects can only be changed in their creator thread,

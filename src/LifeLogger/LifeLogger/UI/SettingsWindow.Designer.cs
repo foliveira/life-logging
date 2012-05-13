@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            LifeLogger.LoggerSettings loggerSettings4 = new LifeLogger.LoggerSettings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsWindow));
             this.button1 = new System.Windows.Forms.Button();
             this.EmaiTextBox = new System.Windows.Forms.TextBox();
@@ -103,11 +104,12 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.actionNameDataGridViewTextBoxColumn,
             this.shortcutsDataGridViewTextBoxColumn});
-            Program.Settings.Password = null;
-            Program.Settings.Username = null;
-            this.dataGridView1.DataSource = Program.Settings.Actions;
+            loggerSettings4.Password = null;
+            loggerSettings4.Username = null;
+            this.dataGridView1.DataSource = loggerSettings4.Actions;
             this.dataGridView1.Location = new System.Drawing.Point(12, 74);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(345, 210);
             this.dataGridView1.TabIndex = 6;
             // 
