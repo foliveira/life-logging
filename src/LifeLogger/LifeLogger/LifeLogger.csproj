@@ -51,6 +51,12 @@
   <ItemGroup>
     <Compile Include="LoggerSettings.cs" />
     <Compile Include="Helpers\WindowsShell.cs" />
+    <Compile Include="UI\AddActionWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AddActionWindow.Designer.cs">
+      <DependentUpon>AddActionWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\LogerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +65,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Mediators\AddActionWindowMediator.cs" />
     <Compile Include="UI\Mediators\IMediator.cs" />
     <Compile Include="UI\Mediators\LoggerWindowMediator.cs" />
     <Compile Include="UI\Mediators\SettingsWindowMediator.cs" />
@@ -68,6 +75,9 @@
     <Compile Include="UI\SettingsWindow.Designer.cs">
       <DependentUpon>SettingsWindow.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\AddActionWindow.resx">
+      <DependentUpon>AddActionWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\LogerWindow.resx">
       <DependentUpon>LogerWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -83,6 +93,7 @@
     </Compile>
     <EmbeddedResource Include="UI\SettingsWindow.resx">
       <DependentUpon>SettingsWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

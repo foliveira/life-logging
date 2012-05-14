@@ -34,6 +34,7 @@ namespace LifeLogger
         {
             Mediators.Add(new LoggerWindowMediator(new LoggerWindow(), true));
             Mediators.Add(new SettingsWindowMediator(new SettingsWindow(), false));
+            Mediators.Add(new AddActionWindowMediator(new AddActionWindow(), false));
         }
 
         private static Form GetMainFormFromMediators()

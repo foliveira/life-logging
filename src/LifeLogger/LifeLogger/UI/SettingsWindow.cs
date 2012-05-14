@@ -43,5 +43,11 @@ namespace LifeLogger.UI
             this.Hide();
             Program.GetForm<LoggerWindow>().Show();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Program.GetForm<AddActionWindow>().Show();
+
+        }
     }
 }

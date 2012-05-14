@@ -39,12 +39,13 @@
             this.actionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shortcutsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hintDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(201, 290);
+            this.button1.Location = new System.Drawing.Point(204, 294);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -89,7 +90,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(282, 290);
+            this.button2.Location = new System.Drawing.Point(285, 294);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 5;
@@ -108,6 +109,8 @@
             this.dataGridView1.DataSource = Program.Settings.Actions;
             this.dataGridView1.Location = new System.Drawing.Point(6, 77);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.Size = new System.Drawing.Size(351, 156);
             this.dataGridView1.TabIndex = 6;
             // 
@@ -116,24 +119,38 @@
             this.actionNameDataGridViewTextBoxColumn.DataPropertyName = "ActionName";
             this.actionNameDataGridViewTextBoxColumn.HeaderText = "ActionName";
             this.actionNameDataGridViewTextBoxColumn.Name = "actionNameDataGridViewTextBoxColumn";
+            this.actionNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // shortcutsDataGridViewTextBoxColumn
             // 
             this.shortcutsDataGridViewTextBoxColumn.DataPropertyName = "Shortcuts";
             this.shortcutsDataGridViewTextBoxColumn.HeaderText = "Shortcuts";
             this.shortcutsDataGridViewTextBoxColumn.Name = "shortcutsDataGridViewTextBoxColumn";
+            this.shortcutsDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // hintDataGridViewTextBoxColumn
             // 
             this.hintDataGridViewTextBoxColumn.DataPropertyName = "Hint";
             this.hintDataGridViewTextBoxColumn.HeaderText = "Hint";
             this.hintDataGridViewTextBoxColumn.Name = "hintDataGridViewTextBoxColumn";
+            this.hintDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(285, 260);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 7;
+            this.button3.Text = "New Action";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(369, 325);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
@@ -164,5 +181,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn actionNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn shortcutsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hintDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button3;
     }
 }

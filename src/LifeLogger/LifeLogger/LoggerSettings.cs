@@ -22,7 +22,7 @@ namespace LifeLogger
         {
             var ua = new UserAction {ActionName = name};
             Actions.Add(ua);
-            //ua.Shortcuts = ua.Shortcuts + "," + name;
+            ua.Shortcuts = ua.Shortcuts + "," + name;
             return ua;
         }
 
@@ -37,12 +37,13 @@ namespace LifeLogger
 
         }
 
-        [Serializable]
-        public class UserAction
-        {
-            public String ActionName { get; set; }
-            public String Shortcuts { get; set; }
-            public String Hint { get; set; }
-        }
+        
+    }
+
+    public class UserAction
+    {
+        public String ActionName { get; set; }
+        public String Shortcuts { get; set; }
+        public String Hint { get; set; }
     }
 }
