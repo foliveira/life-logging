@@ -65,6 +65,7 @@ namespace LifeLogger.UI
                                               if (result == DialogResult.Yes)
                                               {
                                                   Program.Settings.AddAction(log[0]);
+                                                  ua = Program.Settings.GetActionForShortcut(log[0]);
                                               }
                                           }
 

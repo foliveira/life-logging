@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            LifeLogger.LoggerSettings loggerSettings4 = new LifeLogger.LoggerSettings();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsWindow));
             this.button1 = new System.Windows.Forms.Button();
             this.EmaiTextBox = new System.Windows.Forms.TextBox();
@@ -39,6 +38,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.actionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.shortcutsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hintDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,20 +103,18 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.actionNameDataGridViewTextBoxColumn,
-            this.shortcutsDataGridViewTextBoxColumn});
-            loggerSettings4.Password = null;
-            loggerSettings4.Username = null;
-            this.dataGridView1.DataSource = loggerSettings4.Actions;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 74);
+            this.shortcutsDataGridViewTextBoxColumn,
+            this.hintDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = Program.Settings.Actions;
+            this.dataGridView1.Location = new System.Drawing.Point(6, 77);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(345, 210);
+            this.dataGridView1.Size = new System.Drawing.Size(351, 156);
             this.dataGridView1.TabIndex = 6;
             // 
             // actionNameDataGridViewTextBoxColumn
             // 
             this.actionNameDataGridViewTextBoxColumn.DataPropertyName = "ActionName";
-            this.actionNameDataGridViewTextBoxColumn.HeaderText = "Action";
+            this.actionNameDataGridViewTextBoxColumn.HeaderText = "ActionName";
             this.actionNameDataGridViewTextBoxColumn.Name = "actionNameDataGridViewTextBoxColumn";
             // 
             // shortcutsDataGridViewTextBoxColumn
@@ -124,6 +122,12 @@
             this.shortcutsDataGridViewTextBoxColumn.DataPropertyName = "Shortcuts";
             this.shortcutsDataGridViewTextBoxColumn.HeaderText = "Shortcuts";
             this.shortcutsDataGridViewTextBoxColumn.Name = "shortcutsDataGridViewTextBoxColumn";
+            // 
+            // hintDataGridViewTextBoxColumn
+            // 
+            this.hintDataGridViewTextBoxColumn.DataPropertyName = "Hint";
+            this.hintDataGridViewTextBoxColumn.HeaderText = "Hint";
+            this.hintDataGridViewTextBoxColumn.Name = "hintDataGridViewTextBoxColumn";
             // 
             // SettingsWindow
             // 
@@ -159,5 +163,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn actionNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn shortcutsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hintDataGridViewTextBoxColumn;
     }
 }

@@ -6,11 +6,15 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace LifeLogger.UI
 {
     public partial class SettingsWindow : Form
     {
+        
+
         public SettingsWindow()
         {
             InitializeComponent();
@@ -27,8 +31,16 @@ namespace LifeLogger.UI
             Program.Settings.Username = EmaiTextBox.Text;
             Program.Settings.Password = PasswordTextBox.Text;
 
-            this.Hide();
+            //Stream stream = File.Open("settings.bin", FileMode.Create);
+            //BinaryFormatter bFormatter = new BinaryFormatter();
+            //bFormatter.Serialize(stream, Program.Settings);
+            //stream.Close();
 
+            TextWriter textWriter = new StreamWriter("settings.xml");
+            Program.XmlSer.Serialize(textWriter, Program.Settings);
+            textWriter.Close();
+
+            this.Hide();
             Program.GetForm<LoggerWindow>().Show();
         }
     }

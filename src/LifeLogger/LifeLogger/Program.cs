@@ -8,13 +8,15 @@ namespace LifeLogger
     using System;
     using System.Windows.Forms;
     using UI;
+    using System.Runtime.Serialization;
+    using System.IO;
 
     static class Program
     {
         private static readonly IList<IMediator> Mediators = new List<IMediator>();
 
-        //Deserialize!! If Error, create New
         public static LoggerSettings Settings = new LoggerSettings();
+        public static System.Xml.Serialization.XmlSerializer XmlSer = new System.Xml.Serialization.XmlSerializer(Settings.GetType());
 
         /// <summary>
         /// The main entry point for the application.
@@ -24,10 +26,14 @@ namespace LifeLogger
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
             RegisterMediators();
-
             Application.Run(GetMainFormFromMediators());
+
+            
+            TextReader textReader = new StreamReader("settings.xml");
+            Settings = (LoggerSettings)XmlSer.Deserialize(textReader);
+            textReader.Close();
+
         }
 
         private static void RegisterMediators()
