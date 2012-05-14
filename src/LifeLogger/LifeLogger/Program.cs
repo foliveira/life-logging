@@ -28,12 +28,6 @@ namespace LifeLogger
             Application.SetCompatibleTextRenderingDefault(false);
             RegisterMediators();
             Application.Run(GetMainFormFromMediators());
-
-            
-            TextReader textReader = new StreamReader("settings.xml");
-            Settings = (LoggerSettings)XmlSer.Deserialize(textReader);
-            textReader.Close();
-
         }
 
         private static void RegisterMediators()
