@@ -5,7 +5,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeLogger.GDocs", "LifeLog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeLogger", "LifeLogger\LifeLogger.csproj", "{65437D79-7303-43EC-8B7F-A3557F7F3247}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeLogger.Tests", "LifeLogger.Tests\LifeLogger.Tests.csproj", "{D454EFF7-1FFE-43CC-8744-D72D7F026328}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1BF53FB1-7A7C-4593-8407-B1C470F03FF5}"
+	ProjectSection(SolutionItems) = preProject
+		LifeLogger.vsmdi = LifeLogger.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = LifeLogger.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -35,6 +47,16 @@ Global
 		{65437D79-7303-43EC-8B7F-A3557F7F3247}.Release|Mixed Platforms.Build.0 = Release|x86
 		{65437D79-7303-43EC-8B7F-A3557F7F3247}.Release|x86.ActiveCfg = Release|x86
 		{65437D79-7303-43EC-8B7F-A3557F7F3247}.Release|x86.Build.0 = Release|x86
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D454EFF7-1FFE-43CC-8744-D72D7F026328}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

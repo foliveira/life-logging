@@ -45,18 +45,17 @@ namespace LifeLogger.UI
                                                    ctrl.CreateWorksheet(se, String.Format("{0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture),
                                                                                                                           DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture)));
 
+                                          var parser = new Parser.ParserEngine().ParseUserInput(logTextBox.Text);
+                                          /*
                                           var log = logTextBox.Text.Split(' ');
-
-                                          bool keep = true;
-
+                                          var keep = true;
                                           var ua = Program.Settings.GetActionForShortcut(log[0]);
                                           if (ua == null)
                                           {
-                                              DialogResult result;
-                                              result = MessageBox.Show(String.Format("Action \"{0}\" is not defined. Do you wish do add it?", log[0]),
-                                                  "Attention", 
-                                                  MessageBoxButtons.YesNo, 
-                                                  MessageBoxIcon.Question);
+                                              var result = MessageBox.Show(String.Format("Action \"{0}\" is not defined. Do you wish do add it?", log[0]),
+                                                                                    "Attention", 
+                                                                                    MessageBoxButtons.YesNo, 
+                                                                                    MessageBoxIcon.Question);
 
                                               if (result == DialogResult.No)
                                               {
@@ -106,6 +105,7 @@ namespace LifeLogger.UI
         private void settingsButton_Click(object sender, EventArgs e)
         {
             this.Hide();
+
             Program.GetForm<SettingsWindow>().Show();
         }
     }

@@ -17,6 +17,7 @@ namespace LifeLogger
 
         public static LoggerSettings Settings = new LoggerSettings();
         public static System.Xml.Serialization.XmlSerializer XmlSer = new System.Xml.Serialization.XmlSerializer(Settings.GetType());
+        public static System.Xml.Serialization.XmlSerializer XmlSer = new System.Xml.Serialization.XmlSerializer(typeof(LoggerSettings));
 
         /// <summary>
         /// The main entry point for the application.
@@ -33,8 +34,8 @@ namespace LifeLogger
         private static void RegisterMediators()
         {
             Mediators.Add(new LoggerWindowMediator(new LoggerWindow(), true));
-            Mediators.Add(new SettingsWindowMediator(new SettingsWindow(), false));
-            Mediators.Add(new AddActionWindowMediator(new AddActionWindow(), false));
+            Mediators.Add(new LoggerWindowMediator(new SettingsWindow()));
+            Mediators.Add(new AddActionWindowMediator(new AddActionWindow()));
         }
 
         private static Form GetMainFormFromMediators()

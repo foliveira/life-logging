@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Parser\ParserEngine.cs" />
     <Compile Include="LoggerSettings.cs" />
     <Compile Include="Helpers\WindowsShell.cs" />
     <Compile Include="UI\AddActionWindow.cs">
@@ -57,6 +58,7 @@
     <Compile Include="UI\AddActionWindow.Designer.cs">
       <DependentUpon>AddActionWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Parser\ParserContext.cs" />
     <Compile Include="UI\LogerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,7 +70,6 @@
     <Compile Include="UI\Mediators\AddActionWindowMediator.cs" />
     <Compile Include="UI\Mediators\IMediator.cs" />
     <Compile Include="UI\Mediators\LoggerWindowMediator.cs" />
-    <Compile Include="UI\Mediators\SettingsWindowMediator.cs" />
     <Compile Include="UI\SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
