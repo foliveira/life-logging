@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Windows.Forms;
+using LifeLogger.UI;
 
 namespace LifeLogger
 {
@@ -21,7 +23,7 @@ namespace LifeLogger
         public UserAction AddAction(string name)
         {
             var ua = new UserAction {ActionName = name};
-            Actions.Add(ua);
+            Program.GetForm<SettingsWindow>().BeginInvoke(new MethodInvoker(() => Actions.Add(ua)));
             ua.Shortcuts = ua.Shortcuts + "," + name;
             return ua;
         }
@@ -36,8 +38,6 @@ namespace LifeLogger
             return Actions.FirstOrDefault(ua => ua.Shortcuts.Split(',').Any(s => s.Trim().Equals(shortcut)));
 
         }
-
-        
     }
 
     public class UserAction

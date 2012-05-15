@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LifeLogger.UI
@@ -18,9 +12,15 @@ namespace LifeLogger.UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Program.Settings.AddAction(ActionTextBox.Text);
-            Program.Settings.GetActionForShortcut(ActionTextBox.Text).Shortcuts = KeyWordsTextBox.Text;
-            Program.Settings.GetActionForShortcut(ActionTextBox.Text).Hint = HintTextBox.Text;
+            var ua = Program.Settings.AddAction(ActionTextBox.Text);
+
+            ua.Shortcuts = KeyWordsTextBox.Text;
+            ua.Hint = HintTextBox.Text;
+
+            ActionTextBox.Text = String.Empty;
+            KeyWordsTextBox.Text = String.Empty;
+            HintTextBox.Text = String.Empty;
+
             this.Hide();
         }
 

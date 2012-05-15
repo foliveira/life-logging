@@ -1,4 +1,5 @@
 ﻿using System.Globalization;
+using LifeLogger.Parser;
 
 namespace LifeLogger.UI
 {
@@ -11,6 +12,8 @@ namespace LifeLogger.UI
 
     public partial class LoggerWindow : Form
     {
+        private readonly ParserEngine _parserEngine = new ParserEngine();
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -45,35 +48,15 @@ namespace LifeLogger.UI
                                                    ctrl.CreateWorksheet(se, String.Format("{0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture),
                                                                                                                           DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture)));
 
-                                          var parser = new Parser.ParserEngine().ParseUserInput(logTextBox.Text);
-                                          /*
-                                          var log = logTextBox.Text.Split(' ');
-                                          var keep = true;
-                                          var ua = Program.Settings.GetActionForShortcut(log[0]);
-                                          if (ua == null)
-                                          {
-                                              var result = MessageBox.Show(String.Format("Action \"{0}\" is not defined. Do you wish do add it?", log[0]),
-                                                                                    "Attention", 
-                                                                                    MessageBoxButtons.YesNo, 
-                                                                                    MessageBoxIcon.Question);
+                                          var entry = logTextBox.Text;
 
-                                              if (result == DialogResult.No)
-                                              {
-                                                  keep = false;
-                                              }
-                                              if (result == DialogResult.Yes)
-                                              {
-                                                  Program.Settings.AddAction(log[0]);
-                                                  ua = Program.Settings.GetActionForShortcut(log[0]);
-                                              }
-                                          }
-
-                                          if (keep)
+                                          if (!String.IsNullOrEmpty(entry) && !String.IsNullOrWhiteSpace(entry))
                                           {
-                                              var finalLog = String.Format("{0} {1}", ua.ActionName,
-                                                                           String.Join(" ", log, 1, log.Length - 1));
-                                              ctrl.InsertRecord(ws, DateTime.Now.Day.ToString(CultureInfo.InvariantCulture), String.Format("{0} #{1}#", finalLog,
-                                                                                                                                                        DateTime.Now.ToLongTimeString()));
+                                              var context = TreatParserOutput(entry);
+
+                                              ctrl.InsertRecord(ws,
+                                                                context.ContextDate.Day.ToString(
+                                                                    CultureInfo.InvariantCulture), context.ToString());
                                           }
 
                                           /* 
@@ -87,6 +70,45 @@ namespace LifeLogger.UI
                                                                                      this.Visible = false;
                                                                                  }));
                                       });
+        }
+
+        private ParserContext TreatParserOutput(string entry)
+        {
+            var context = _parserEngine.ParseUserInput(entry);
+
+            if (context.Equals(ParserContext.Empty))
+            {
+                var actionString = entry.Split(' ')[0];
+
+                var result =
+                    MessageBox.Show(String.Format("Action \"{0}\" is not defined. Do you wish do add it?", actionString),
+                                    "Atention",
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    var actionToAdd = String.Format("{0}{1}",
+                                                    actionString.Substring(0, 1).ToUpper(), 
+                                                    actionString.Substring(1));
+                    var aaw = Program.GetForm<AddActionWindow>();
+                    aaw.ActionTextBox.Text = actionToAdd;
+
+                    EventHandler[] eh = {null};
+                    eh[0] = (s, args) =>
+                                {
+                                    if (aaw.Visible)
+                                        return;
+
+                                    aaw.VisibleChanged -= eh[0];
+                                    context = TreatParserOutput(entry);
+                                };
+                    aaw.VisibleChanged += eh[0];
+                    aaw.ShowDialog();
+                }
+            }
+
+            return context;
         }
 
         protected override void WndProc(ref Message m)

@@ -1,22 +1,17 @@
-﻿using System.Collections.Generic;
-using LifeLogger.Properties;
-using LifeLogger.UI.Mediators;
-using System.Linq;
-
-namespace LifeLogger
+﻿namespace LifeLogger
 {
     using System;
     using System.Windows.Forms;
     using UI;
-    using System.Runtime.Serialization;
-    using System.IO;
+    using System.Collections.Generic;
+    using UI.Mediators;
+    using System.Linq;
 
     static class Program
     {
         private static readonly IList<IMediator> Mediators = new List<IMediator>();
 
         public static LoggerSettings Settings = new LoggerSettings();
-        public static System.Xml.Serialization.XmlSerializer XmlSer = new System.Xml.Serialization.XmlSerializer(Settings.GetType());
         public static System.Xml.Serialization.XmlSerializer XmlSer = new System.Xml.Serialization.XmlSerializer(typeof(LoggerSettings));
 
         /// <summary>
