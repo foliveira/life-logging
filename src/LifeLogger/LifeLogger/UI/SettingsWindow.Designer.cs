@@ -1,4 +1,7 @@
-﻿namespace LifeLogger.UI
+﻿using System.ComponentModel;
+using LifeLogger.Settings;
+
+namespace LifeLogger.UI
 {
     partial class SettingsWindow
     {
@@ -28,30 +31,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsWindow));
-            this.button1 = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
             this.EmaiTextBox = new System.Windows.Forms.TextBox();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.actionNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.shortcutsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hintDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.CancelButton = new System.Windows.Forms.Button();
+            this.AddActionButton = new System.Windows.Forms.Button();
+            this.ActionsList = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
-            // button1
+            // SaveButton
             // 
-            this.button1.Location = new System.Drawing.Point(204, 294);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Save";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1Click);
+            this.SaveButton.Location = new System.Drawing.Point(204, 239);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 0;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
             // 
             // EmaiTextBox
             // 
@@ -88,82 +85,50 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Password";
             // 
-            // button2
+            // CancelButton
             // 
-            this.button2.Location = new System.Drawing.Point(285, 294);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2Click);
+            this.CancelButton.Location = new System.Drawing.Point(285, 239);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(75, 23);
+            this.CancelButton.TabIndex = 5;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // AddActionButton
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.actionNameDataGridViewTextBoxColumn,
-            this.shortcutsDataGridViewTextBoxColumn,
-            this.hintDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = Program.Settings.Actions;
-            this.dataGridView1.Location = new System.Drawing.Point(6, 77);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(351, 156);
-            this.dataGridView1.TabIndex = 6;
+            this.AddActionButton.Location = new System.Drawing.Point(15, 239);
+            this.AddActionButton.Name = "AddActionButton";
+            this.AddActionButton.Size = new System.Drawing.Size(75, 23);
+            this.AddActionButton.TabIndex = 7;
+            this.AddActionButton.Text = "New Action";
+            this.AddActionButton.UseVisualStyleBackColor = true;
             // 
-            // actionNameDataGridViewTextBoxColumn
+            // ActionsList
             // 
-            this.actionNameDataGridViewTextBoxColumn.DataPropertyName = "ActionName";
-            this.actionNameDataGridViewTextBoxColumn.HeaderText = "ActionName";
-            this.actionNameDataGridViewTextBoxColumn.Name = "actionNameDataGridViewTextBoxColumn";
-            this.actionNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // shortcutsDataGridViewTextBoxColumn
-            // 
-            this.shortcutsDataGridViewTextBoxColumn.DataPropertyName = "Shortcuts";
-            this.shortcutsDataGridViewTextBoxColumn.HeaderText = "Shortcuts";
-            this.shortcutsDataGridViewTextBoxColumn.Name = "shortcutsDataGridViewTextBoxColumn";
-            this.shortcutsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // hintDataGridViewTextBoxColumn
-            // 
-            this.hintDataGridViewTextBoxColumn.DataPropertyName = "Hint";
-            this.hintDataGridViewTextBoxColumn.HeaderText = "Hint";
-            this.hintDataGridViewTextBoxColumn.Name = "hintDataGridViewTextBoxColumn";
-            this.hintDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(285, 260);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "New Action";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.ActionsList.Location = new System.Drawing.Point(12, 77);
+            this.ActionsList.Name = "ActionsList";
+            this.ActionsList.Size = new System.Drawing.Size(348, 156);
+            this.ActionsList.TabIndex = 8;
+            this.ActionsList.UseCompatibleStateImageBehavior = false;
             // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 325);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button2);
+            this.ClientSize = new System.Drawing.Size(367, 274);
+            this.Controls.Add(this.ActionsList);
+            this.Controls.Add(this.AddActionButton);
+            this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.EmaiTextBox);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SaveButton);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SettingsWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SettingsWindow";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Text = "Settings";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -171,16 +136,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox EmaiTextBox;
-        private System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        internal System.Windows.Forms.Button SaveButton;
+        internal new System.Windows.Forms.Button CancelButton;
+        internal System.Windows.Forms.Button AddActionButton;
+        internal System.Windows.Forms.TextBox EmaiTextBox;
+        internal System.Windows.Forms.TextBox PasswordTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn actionNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn shortcutsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn hintDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button button3;
+        internal System.Windows.Forms.ListView ActionsList;
     }
 }

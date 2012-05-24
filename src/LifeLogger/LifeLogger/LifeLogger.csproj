@@ -50,8 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Parser\ParserEngine.cs" />
-    <Compile Include="LoggerSettings.cs" />
+    <Compile Include="Settings\LoggerSettings.cs" />
     <Compile Include="Helpers\WindowsShell.cs" />
+    <Compile Include="Settings\UserAction.cs" />
     <Compile Include="UI\AddActionWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,17 +60,19 @@
       <DependentUpon>AddActionWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Parser\ParserContext.cs" />
-    <Compile Include="UI\LogerWindow.cs">
+    <Compile Include="UI\LoggerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\LogerWindow.Designer.cs">
-      <DependentUpon>LogerWindow.cs</DependentUpon>
+    <Compile Include="UI\LoggerWindow.Designer.cs">
+      <DependentUpon>LoggerWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Mediators\AddActionWindowMediator.cs" />
+    <Compile Include="UI\Mediators\AddActionMediator.cs" />
     <Compile Include="UI\Mediators\IMediator.cs" />
-    <Compile Include="UI\Mediators\LoggerWindowMediator.cs" />
+    <Compile Include="UI\Mediators\AbstractLoggerMediator.cs" />
+    <Compile Include="UI\Mediators\LoggerMediator.cs" />
+    <Compile Include="UI\Mediators\SettingsMediator.cs" />
     <Compile Include="UI\SettingsWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,8 +82,8 @@
     <EmbeddedResource Include="UI\AddActionWindow.resx">
       <DependentUpon>AddActionWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\LogerWindow.resx">
-      <DependentUpon>LogerWindow.cs</DependentUpon>
+    <EmbeddedResource Include="UI\LoggerWindow.resx">
+      <DependentUpon>LoggerWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -111,6 +114,9 @@
       <Project>{6892026A-49FA-40DE-8815-F8602062499B}</Project>
       <Name>LifeLogger.GDocs</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\DataSources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

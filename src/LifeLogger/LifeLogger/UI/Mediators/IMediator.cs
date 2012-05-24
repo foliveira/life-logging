@@ -2,9 +2,12 @@
 {
     using System.Windows.Forms;
 
-    public interface IMediator
+    public interface IMediator<out T> 
+        where T : Form, new()
     {
         bool IsMainForm { get; }
-        Form MediatingForm { get; }
+        T MediatingForm { get; }
+
+        void RegisterEvents();
     }
 }

@@ -1,8 +1,9 @@
-﻿using System;
-using System.Text;
-
-namespace LifeLogger.Parser
+﻿namespace LifeLogger.Parser
 {
+    using System;
+    using System.Text;
+    using Settings;
+
     public class ParserContext
     {
         public static readonly ParserContext Empty = new ParserContext {IsEmpty = true};

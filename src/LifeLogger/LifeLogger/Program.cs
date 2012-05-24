@@ -1,15 +1,19 @@
 ﻿namespace LifeLogger
 {
     using System;
-    using System.Windows.Forms;
-    using UI;
-    using System.Collections.Generic;
-    using UI.Mediators;
+    using System.IO;
+    using System.Text;
+    using System.Xml;
     using System.Linq;
+    using System.Windows.Forms;
+    using System.Collections.Generic;
+
+    using Settings;
+    using UI.Mediators;
 
     static class Program
     {
-        private static readonly IList<IMediator> Mediators = new List<IMediator>();
+        private static readonly IList<IMediator<Form>> Mediators = new List<IMediator<Form>>();
 
         public static LoggerSettings Settings = new LoggerSettings();
         public static System.Xml.Serialization.XmlSerializer XmlSer = new System.Xml.Serialization.XmlSerializer(typeof(LoggerSettings));
@@ -22,18 +26,50 @@
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
             RegisterMediators();
-            Application.Run(GetMainFormFromMediators());
+            RegisterEvents();
+            LoadSettings();
+
+            Application.Run(GetMainForm());
+        }
+
+        private static void LoadSettings()
+        {
+            if (File.Exists("settings.xml"))
+            {
+                using (XmlReader settingsReader = new XmlTextReader("settings.xml"))
+                {
+                    if (XmlSer.CanDeserialize(settingsReader))
+                        Settings = XmlSer.Deserialize(settingsReader) as LoggerSettings;
+                }
+            }
+            else
+            {
+                using (XmlWriter settingsWriter = new XmlTextWriter("settings.xml", Encoding.UTF8))
+                {
+                    XmlSer.Serialize(settingsWriter, Settings);
+                }
+            }
+        }
+
+        private static void RegisterEvents()
+        {
+            foreach (var mediator in Mediators)
+            {
+                mediator.RegisterEvents();
+            }
         }
 
         private static void RegisterMediators()
         {
-            Mediators.Add(new LoggerWindowMediator(new LoggerWindow(), true));
-            Mediators.Add(new LoggerWindowMediator(new SettingsWindow()));
-            Mediators.Add(new AddActionWindowMediator(new AddActionWindow()));
+            Mediators.Add(new LoggerMediator());
+
+            Mediators.Add(new SettingsMediator());
+            Mediators.Add(new AddActionMediator());
         }
 
-        private static Form GetMainFormFromMediators()
+        private static Form GetMainForm()
         {
             var mediators = Mediators.Where(m => m.IsMainForm).ToArray();
 
