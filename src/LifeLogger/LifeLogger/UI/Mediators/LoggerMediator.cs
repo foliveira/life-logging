@@ -42,13 +42,13 @@
 
             Task.Factory.StartNew(() =>
             {
-                var ctrl = new GDocs.Controller(Program.Settings.Username, Program.Settings.Password);
+                Program.Controller = new GDocs.Controller(Program.Settings.Username, Program.Settings.Password);
 
-                var se = ctrl.GetSpreadsheet("LifeLogger") ??
-                         ctrl.CreateSpreadsheet("LifeLogger");
+                var se = Program.Controller.GetSpreadsheet("LifeLogger") ??
+                         Program.Controller.CreateSpreadsheet("LifeLogger");
 
-                var ws = ctrl.GetCurrentWorksheet(se) ??
-                         ctrl.CreateWorksheet(se, String.Format("{0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture),
+                var ws = Program.Controller.GetCurrentWorksheet(se) ??
+                         Program.Controller.CreateWorksheet(se, String.Format("{0} {1}", DateTime.Now.ToString("MMMM", CultureInfo.InvariantCulture),
                                                                                                 DateTime.Now.ToString("yyyy", CultureInfo.InvariantCulture)));
 
                 var entry = MediatingForm.LogTextBox.Text;
@@ -57,7 +57,7 @@
                 {
                     var context = TreatParserOutput(entry);
 
-                    ctrl.InsertRecord(ws,
+                    Program.Controller.InsertRecord(ws,
                                       context.ContextDate.Day.ToString(
                                           CultureInfo.InvariantCulture), context.ToString());
                 }

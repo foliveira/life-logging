@@ -6,6 +6,8 @@
     using System.Globalization;
 
     using Google.GData.Spreadsheets;
+    using System.Collections.Generic;
+    using Google.GData.Client;
 
     public class Controller
     {
@@ -102,5 +104,45 @@
             var cell = new CellEntry(currentRow + 1, currentColumn, text);
             cellFeed.Insert(cell);
         }
+
+        public Dictionary<string, List<string>> GetRowsFromWorksheet(WorksheetEntry worksheet)
+        {
+            Dictionary<string, List<string>> dictionary = new Dictionary<string, List<string>>();
+
+            // Define the URL to request the list feed of the worksheet.
+            AtomLink listFeedLink = worksheet.Links.FindService(GDataSpreadsheetsNameTable.ListRel, null);
+
+            // Fetch the list feed of the worksheet.
+            ListQuery listQuery = new ListQuery(listFeedLink.HRef.ToString());
+            ListFeed listFeed = _service.Query(listQuery);
+
+            foreach (ListEntry row in listFeed.Entries)
+            {
+                foreach (ListEntry.Custom element in row.Elements)
+                {
+                    if (!String.IsNullOrEmpty(element.Value))
+                    {
+                        int actionStart = element.Value.IndexOf("(");
+                        int actionEnd = element.Value.IndexOf(" ", actionStart);
+                        int secondEnd = element.Value.IndexOf(")", actionEnd);
+                        string action = element.Value.Substring(actionStart + 1, actionEnd - actionStart - 1);
+                        string cena = element.Value.Substring(actionEnd + 1, secondEnd - actionEnd - 1);
+
+                        if (dictionary.ContainsKey(action))
+                        {
+                            dictionary[action].Add(cena);
+                        }
+                        else
+                        {
+                            List<string> list = new List<string>();
+                            list.Add(cena);
+                            dictionary.Add(action, list);
+                        }
+                    }
+                }
+            }
+            return dictionary;
+        }
+
     }
 }

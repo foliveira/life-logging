@@ -17,6 +17,7 @@
 
         public static LoggerSettings Settings = new LoggerSettings();
         public static System.Xml.Serialization.XmlSerializer XmlSer = new System.Xml.Serialization.XmlSerializer(typeof(LoggerSettings));
+        public static GDocs.Controller Controller; // = new GDocs.Controller(Program.Settings.Username, Program.Settings.Password);
 
         /// <summary>
         /// The main entry point for the application.
@@ -64,7 +65,6 @@
         private static void RegisterMediators()
         {
             Mediators.Add(new LoggerMediator());
-
             Mediators.Add(new SettingsMediator());
             Mediators.Add(new AddActionMediator());
         }
