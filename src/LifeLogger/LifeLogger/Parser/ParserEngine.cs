@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using LifeLogger.Parser;
-
-namespace LifeLogger.Parser
+﻿namespace LifeLogger.Parser
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class ParserEngine
     {
-        private ParserContext _parserContext;
-
         public ParserEngine()
         {
-            _parserContext = new ParserContext();
+            CurrentParserContext = new ParserContext();
         }
+
+        internal ParserContext CurrentParserContext { get; private set; }
 
         public ParserContext ParseUserInput(String input, ParserContext context = null)
         {
             var parts = input.Split(' ');
             var settings = Program.Settings;
 
-            _parserContext = context ?? _parserContext;
+            CurrentParserContext = context ?? CurrentParserContext;
 
             if (parts.Length == 0)
                 return ParserContext.Empty;
@@ -38,7 +36,7 @@ namespace LifeLogger.Parser
                 return ParserContext.Empty;
             }
 
-            _parserContext.ContextAction = userAction;
+            CurrentParserContext.ContextAction = userAction;
 
             var inputSansAction = parts.Skip(1).ToArray();
 
@@ -46,8 +44,8 @@ namespace LifeLogger.Parser
             HandleLocation(inputSansAction);
             HandleTime(inputSansAction);
 
-            var returningContext = _parserContext;
-            _parserContext = new ParserContext();
+            var returningContext = CurrentParserContext;
+            CurrentParserContext = new ParserContext();
             return returningContext;
         }
 
@@ -58,58 +56,61 @@ namespace LifeLogger.Parser
             switch (when)
             {
                 case "today":
-                    _parserContext.ContextDate = DateTime.Today.Date;
+                    CurrentParserContext.ContextDate = DateTime.Today.Date;
                     break;
                 case "yesterday":
-                    _parserContext.ContextDate = DateTime.Today.AddDays(-1).Date;
+                    CurrentParserContext.ContextDate = DateTime.Today.AddDays(-1).Date;
                     break;
                 default:
                     {
                         DateTime contextDate;
                         if (DateTime.TryParse(when, out contextDate))
-                            _parserContext.ContextDate = contextDate;
+                            CurrentParserContext.ContextDate = contextDate;
                     }
                     break;
             }
 
-            return _parserContext;
+            return CurrentParserContext;
         }
 
         private ParserContext HandleTime(IEnumerable<string> parts)
         {
             var timePart = parts.FirstOrDefault(p => p.StartsWith("@"));
             if (timePart == null)
-                return _parserContext;
+                return CurrentParserContext;
 
             timePart = timePart.Substring(1);
 
             DateTime time;
 
             if (!DateTime.TryParse(timePart, out time))
-                return _parserContext;
+                return CurrentParserContext;
 
-            _parserContext.ContextDate = _parserContext.ContextDate.AddHours(time.Hour);
-            _parserContext.ContextDate = _parserContext.ContextDate.AddMinutes(time.Minute);
+            CurrentParserContext.ContextDate = CurrentParserContext.ContextDate.AddHours(time.Hour);
+            CurrentParserContext.ContextDate = CurrentParserContext.ContextDate.AddMinutes(time.Minute);
 
-            return _parserContext;
+            return CurrentParserContext;
         }
 
         private ParserContext HandleLocation(IEnumerable<string> parts)
         {
-            var locationParts = parts.SkipWhile(s => !s.Equals("at")).Skip(1);
+            var locationParts = parts.SkipWhile(p => !p.StartsWith("@@")).ToString();
 
-            _parserContext.ContextLocation = String.Join(" ", locationParts);
+            if (String.IsNullOrEmpty(locationParts))
+                return CurrentParserContext;
 
-            return _parserContext;
+            CurrentParserContext.ContextLocation = String.Join(" ", locationParts.Skip(2)); //Take out the leading @@
+
+            return CurrentParserContext;
         }
 
         private ParserContext HandleAction(IEnumerable<string> parts)
         {
-            var actionParts = parts.TakeWhile(s => !s.StartsWith("@")).TakeWhile(s => !s.Equals("at"));
+            var actionParts = parts.TakeWhile(s => !s.StartsWith("@")).TakeWhile(s => !s.Equals("@@"));
 
-            _parserContext.ContextContent = String.Join(" ", actionParts);
+            CurrentParserContext.ContextContent = String.Join(" ", actionParts);
 
-            return _parserContext;
+            return CurrentParserContext;
         }
     }
 }

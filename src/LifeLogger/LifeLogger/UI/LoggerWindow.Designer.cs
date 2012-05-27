@@ -28,45 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SendButton = new System.Windows.Forms.Button();
             this.LogTextBox = new System.Windows.Forms.TextBox();
             this.ProgressBar = new System.Windows.Forms.ProgressBar();
+            this.SendButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // SendButton
-            // 
-            this.SendButton.Location = new System.Drawing.Point(413, 12);
-            this.SendButton.Name = "SendButton";
-            this.SendButton.Size = new System.Drawing.Size(75, 23);
-            this.SendButton.TabIndex = 0;
-            this.SendButton.Text = "Log This!";
-            this.SendButton.UseVisualStyleBackColor = true;
             // 
             // LogTextBox
             // 
             this.LogTextBox.Location = new System.Drawing.Point(12, 15);
             this.LogTextBox.Name = "LogTextBox";
-            this.LogTextBox.Size = new System.Drawing.Size(395, 20);
+            this.LogTextBox.Size = new System.Drawing.Size(501, 20);
             this.LogTextBox.TabIndex = 1;
             // 
             // ProgressBar
             // 
-            this.ProgressBar.Location = new System.Drawing.Point(307, 15);
+            this.ProgressBar.Location = new System.Drawing.Point(413, 15);
             this.ProgressBar.MarqueeAnimationSpeed = 30;
             this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(100, 20);
+            this.ProgressBar.Size = new System.Drawing.Size(100, 21);
             this.ProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.ProgressBar.TabIndex = 2;
             this.ProgressBar.Visible = false;
             // 
+            // SendButton
+            // 
+            this.SendButton.BackgroundImage = global::LifeLogger.Properties.Resources.preferences;
+            this.SendButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.SendButton.FlatAppearance.BorderSize = 0;
+            this.SendButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SendButton.Location = new System.Drawing.Point(517, 15);
+            this.SendButton.Name = "SendButton";
+            this.SendButton.Padding = new System.Windows.Forms.Padding(5);
+            this.SendButton.Size = new System.Drawing.Size(30, 21);
+            this.SendButton.TabIndex = 0;
+            this.SendButton.UseVisualStyleBackColor = true;
+            // 
             // SettingsButton
             // 
-            this.SettingsButton.Location = new System.Drawing.Point(501, 12);
+            this.SettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SettingsButton.BackgroundImage = global::LifeLogger.Properties.Resources.settings_32;
+            this.SettingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.SettingsButton.FlatAppearance.BorderSize = 0;
+            this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SettingsButton.Location = new System.Drawing.Point(553, 15);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(75, 23);
+            this.SettingsButton.Size = new System.Drawing.Size(24, 24);
             this.SettingsButton.TabIndex = 3;
-            this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = true;
             // 
             // LoggerWindow

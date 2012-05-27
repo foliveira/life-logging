@@ -67,6 +67,8 @@
             Mediators.Add(new LoggerMediator());
             Mediators.Add(new SettingsMediator());
             Mediators.Add(new AddActionMediator());
+            Mediators.Add(new UpdateActionMediator());
+            Mediators.Add(new ChartMediator());
         }
 
         private static Form GetMainForm()

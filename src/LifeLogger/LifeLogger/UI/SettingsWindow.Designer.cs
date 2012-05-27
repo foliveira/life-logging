@@ -31,6 +31,7 @@ namespace LifeLogger.UI
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.SaveButton = new System.Windows.Forms.Button();
             this.EmaiTextBox = new System.Windows.Forms.TextBox();
             this.PasswordTextBox = new System.Windows.Forms.TextBox();
@@ -38,16 +39,24 @@ namespace LifeLogger.UI
             this.label2 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.AddActionButton = new System.Windows.Forms.Button();
+            this.ChartButton = new System.Windows.Forms.Button();
+            this.RemoveActionButton = new System.Windows.Forms.Button();
             this.ActionsList = new System.Windows.Forms.ListView();
+            this.userActionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.userActionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // SaveButton
             // 
-            this.SaveButton.Location = new System.Drawing.Point(204, 239);
+            this.SaveButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.SaveButton.Image = global::LifeLogger.Properties.Resources._005_Task_24x24_72;
+            this.SaveButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.SaveButton.Location = new System.Drawing.Point(255, 239);
             this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.Size = new System.Drawing.Size(62, 32);
             this.SaveButton.TabIndex = 0;
             this.SaveButton.Text = "Save";
+            this.SaveButton.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.SaveButton.UseVisualStyleBackColor = true;
             // 
             // EmaiTextBox
@@ -87,36 +96,64 @@ namespace LifeLogger.UI
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(285, 239);
+            this.CancelButton.BackgroundImage = global::LifeLogger.Properties.Resources._305_Close_24x24_72;
+            this.CancelButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.CancelButton.Location = new System.Drawing.Point(323, 239);
             this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
+            this.CancelButton.Size = new System.Drawing.Size(32, 32);
             this.CancelButton.TabIndex = 5;
-            this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
             // AddActionButton
             // 
-            this.AddActionButton.Location = new System.Drawing.Point(15, 239);
+            this.AddActionButton.BackgroundImage = global::LifeLogger.Properties.Resources._112_Plus_Green_24x24_72;
+            this.AddActionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.AddActionButton.Location = new System.Drawing.Point(12, 239);
             this.AddActionButton.Name = "AddActionButton";
-            this.AddActionButton.Size = new System.Drawing.Size(75, 23);
+            this.AddActionButton.Size = new System.Drawing.Size(32, 32);
             this.AddActionButton.TabIndex = 7;
-            this.AddActionButton.Text = "New Action";
             this.AddActionButton.UseVisualStyleBackColor = true;
+            // 
+            // ChartButton
+            // 
+            this.ChartButton.BackgroundImage = global::LifeLogger.Properties.Resources.base_charts;
+            this.ChartButton.Location = new System.Drawing.Point(88, 239);
+            this.ChartButton.Name = "ChartButton";
+            this.ChartButton.Size = new System.Drawing.Size(32, 32);
+            this.ChartButton.TabIndex = 9;
+            this.ChartButton.UseVisualStyleBackColor = true;
+            // 
+            // RemoveActionButton
+            // 
+            this.RemoveActionButton.BackgroundImage = global::LifeLogger.Properties.Resources._112_Minus_Orange_24x24_72;
+            this.RemoveActionButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.RemoveActionButton.Location = new System.Drawing.Point(50, 239);
+            this.RemoveActionButton.Name = "RemoveActionButton";
+            this.RemoveActionButton.Size = new System.Drawing.Size(32, 32);
+            this.RemoveActionButton.TabIndex = 10;
+            this.RemoveActionButton.UseVisualStyleBackColor = true;
             // 
             // ActionsList
             // 
-            this.ActionsList.Location = new System.Drawing.Point(12, 77);
+            this.ActionsList.Location = new System.Drawing.Point(12, 48);
             this.ActionsList.Name = "ActionsList";
-            this.ActionsList.Size = new System.Drawing.Size(348, 156);
-            this.ActionsList.TabIndex = 8;
+            this.ActionsList.Size = new System.Drawing.Size(343, 185);
+            this.ActionsList.TabIndex = 11;
             this.ActionsList.UseCompatibleStateImageBehavior = false;
+            // 
+            // userActionBindingSource
+            // 
+            this.userActionBindingSource.DataSource = typeof(LifeLogger.Settings.UserAction);
             // 
             // SettingsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(367, 274);
+            this.ClientSize = new System.Drawing.Size(367, 281);
+            this.ControlBox = false;
             this.Controls.Add(this.ActionsList);
+            this.Controls.Add(this.RemoveActionButton);
+            this.Controls.Add(this.ChartButton);
             this.Controls.Add(this.AddActionButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.label2);
@@ -129,6 +166,7 @@ namespace LifeLogger.UI
             this.Name = "SettingsWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Settings";
+            ((System.ComponentModel.ISupportInitialize)(this.userActionBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,9 +181,9 @@ namespace LifeLogger.UI
         internal System.Windows.Forms.Button AddActionButton;
         internal System.Windows.Forms.TextBox EmaiTextBox;
         internal System.Windows.Forms.TextBox PasswordTextBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn actionNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn shortcutsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hintDataGridViewTextBoxColumn;
+        internal System.Windows.Forms.Button RemoveActionButton;
+        internal System.Windows.Forms.Button ChartButton;
+        private System.Windows.Forms.BindingSource userActionBindingSource;
         internal System.Windows.Forms.ListView ActionsList;
     }
 }

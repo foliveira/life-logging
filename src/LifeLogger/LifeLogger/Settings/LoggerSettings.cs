@@ -1,38 +1,29 @@
-﻿namespace LifeLogger.Settings
+﻿using System.ComponentModel;
+
+namespace LifeLogger.Settings
 {
     using System;
     using System.Linq;
-    using System.Windows.Forms;
-    using System.Collections.Generic;
-
-    using UI;
 
     [Serializable]
     public class LoggerSettings
     {
-        public List<UserAction> Actions { get; set; }
+        public BindingList<UserAction> Actions { get; set; }
         public String Username { get; set; }
         public String Password { get; set; }
 
         public LoggerSettings()
         {
-            Actions = new List<UserAction>();
+            Actions = new BindingList<UserAction>();
         }
 
         public UserAction AddAction(string name)
         {
-            var ua = new UserAction {ActionName = name};
-            var settingsForm = Program.GetForm<SettingsWindow>();
-            if(settingsForm.InvokeRequired)
-            {
-                settingsForm.BeginInvoke(new MethodInvoker(() => Actions.Add(ua)));
-            }
-            else
-            {
+            var ua = Actions.FirstOrDefault(u => u.ActionName.Equals(name)) ?? new UserAction {ActionName = name};
+            
+            if(!Actions.Any(u => u.ActionName.Equals(ua.ActionName)))
                 Actions.Add(ua);
-            }
 
-            ua.Shortcuts = ua.Shortcuts + "," + name;
             return ua;
         }
 

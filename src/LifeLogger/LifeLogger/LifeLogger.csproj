@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -60,6 +61,20 @@
       <DependentUpon>AddActionWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Parser\ParserContext.cs" />
+    <Compile Include="UI\ChartWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ChartWindow.Designer.cs">
+      <DependentUpon>ChartWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Mediators\ChartMediator.cs" />
+    <Compile Include="UI\Mediators\UpdateActionMediator.cs" />
+    <Compile Include="UI\UpdateActionWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateActionWindow.Designer.cs">
+      <DependentUpon>UpdateActionWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\LoggerWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +97,12 @@
     <EmbeddedResource Include="UI\AddActionWindow.resx">
       <DependentUpon>AddActionWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ChartWindow.resx">
+      <DependentUpon>ChartWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UpdateActionWindow.resx">
+      <DependentUpon>UpdateActionWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\LoggerWindow.resx">
       <DependentUpon>LoggerWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,6 +120,7 @@
       <DependentUpon>SettingsWindow.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\LifeLogger.Settings.UserAction.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -116,7 +138,28 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Properties\DataSources\" />
+    <None Include="Resources\GenVideoDoc_32x32_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preferences.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_Plus_Green_24x24_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\112_Minus_Orange_24x24_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\base_charts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\305_Close_24x24_72.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\005_Task_24x24_72.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

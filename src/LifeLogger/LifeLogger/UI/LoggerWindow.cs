@@ -23,7 +23,7 @@
         public LoggerWindow()
         {
             InitializeComponent();
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 10, 10));
             WindowsShell.RegisterHotKey(this, Keys.Control | Keys.Alt | Keys.L);
             
         }

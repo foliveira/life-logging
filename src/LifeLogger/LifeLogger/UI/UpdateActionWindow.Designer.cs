@@ -1,6 +1,6 @@
 ﻿namespace LifeLogger.UI
 {
-    partial class AddActionWindow
+    partial class UpdateActionWindow
     {
         /// <summary>
         /// Required designer variable.
@@ -34,7 +34,7 @@
             this.ActionTextBox = new System.Windows.Forms.TextBox();
             this.KeyWordsTextBox = new System.Windows.Forms.TextBox();
             this.HintTextBox = new System.Windows.Forms.TextBox();
-            this.AddButton = new System.Windows.Forms.Button();
+            this.UpdateButton = new System.Windows.Forms.Button();
             this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -67,6 +67,7 @@
             // 
             // ActionTextBox
             // 
+            this.ActionTextBox.Enabled = false;
             this.ActionTextBox.Location = new System.Drawing.Point(89, 15);
             this.ActionTextBox.Name = "ActionTextBox";
             this.ActionTextBox.Size = new System.Drawing.Size(133, 20);
@@ -86,14 +87,14 @@
             this.HintTextBox.Size = new System.Drawing.Size(133, 20);
             this.HintTextBox.TabIndex = 5;
             // 
-            // AddButton
+            // UpdateButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(56, 134);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(75, 23);
-            this.AddButton.TabIndex = 6;
-            this.AddButton.Text = "Add";
-            this.AddButton.UseVisualStyleBackColor = true;
+            this.UpdateButton.Location = new System.Drawing.Point(56, 134);
+            this.UpdateButton.Name = "UpdateButton";
+            this.UpdateButton.Size = new System.Drawing.Size(75, 23);
+            this.UpdateButton.TabIndex = 6;
+            this.UpdateButton.Text = "Update";
+            this.UpdateButton.UseVisualStyleBackColor = true;
             // 
             // CancelButton
             // 
@@ -104,14 +105,14 @@
             this.CancelButton.Text = "Cancel";
             this.CancelButton.UseVisualStyleBackColor = true;
             // 
-            // AddActionWindow
+            // UpdateActionWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(243, 170);
             this.ControlBox = false;
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.AddButton);
+            this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.HintTextBox);
             this.Controls.Add(this.KeyWordsTextBox);
             this.Controls.Add(this.ActionTextBox);
@@ -119,9 +120,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "AddActionWindow";
+            this.Name = "UpdateActionWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add New Action";
+            this.Text = "Update Action";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -135,7 +136,7 @@
         internal System.Windows.Forms.TextBox ActionTextBox;
         internal System.Windows.Forms.TextBox KeyWordsTextBox;
         internal System.Windows.Forms.TextBox HintTextBox;
-        internal System.Windows.Forms.Button AddButton;
+        internal System.Windows.Forms.Button UpdateButton;
         internal new System.Windows.Forms.Button CancelButton;
     }
 }
