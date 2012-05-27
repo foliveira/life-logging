@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.ActionsChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CloseButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -40,17 +40,19 @@
             // 
             // ActionsChart
             // 
-            chartArea3.Name = "ChartArea1";
-            this.ActionsChart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.ActionsChart.Legends.Add(legend3);
+            this.ActionsChart.BackColor = System.Drawing.SystemColors.Control;
+            this.ActionsChart.BorderlineColor = System.Drawing.SystemColors.Control;
+            chartArea1.Name = "ChartArea1";
+            this.ActionsChart.ChartAreas.Add(chartArea1);
+            this.ActionsChart.Cursor = System.Windows.Forms.Cursors.Default;
+            legend1.Name = "Legend1";
+            this.ActionsChart.Legends.Add(legend1);
             this.ActionsChart.Location = new System.Drawing.Point(12, 12);
             this.ActionsChart.Name = "ActionsChart";
-            this.ActionsChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Pastel;
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.ActionsChart.Series.Add(series3);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.ActionsChart.Series.Add(series1);
             this.ActionsChart.Size = new System.Drawing.Size(902, 302);
             this.ActionsChart.TabIndex = 0;
             this.ActionsChart.Text = "ActionsChart";
@@ -93,7 +95,7 @@
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.CloseButton);
             this.Controls.Add(this.ActionsChart);
-            this.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "ChartWindow";
             this.Text = "ChartWindow";

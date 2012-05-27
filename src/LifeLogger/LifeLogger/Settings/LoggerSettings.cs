@@ -1,9 +1,8 @@
-﻿using System.ComponentModel;
-
-namespace LifeLogger.Settings
+﻿namespace LifeLogger.Settings
 {
     using System;
     using System.Linq;
+    using System.ComponentModel;
 
     [Serializable]
     public class LoggerSettings

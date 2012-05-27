@@ -1,9 +1,9 @@
-﻿using System;
-using System.ComponentModel;
-using System.Windows.Forms.DataVisualization.Charting;
-
-namespace LifeLogger.UI.Mediators
+﻿namespace LifeLogger.UI.Mediators
 {
+    using System;
+    using System.ComponentModel;
+    using System.Windows.Forms.DataVisualization.Charting;
+
     public class ChartMediator : AbstractLoggerMediator<ChartWindow>
     {
         public override void RegisterEvents()

@@ -1,9 +1,7 @@
-﻿using System.Linq;
-using System.Windows.Forms;
-
-namespace LifeLogger.UI.Mediators
+﻿namespace LifeLogger.UI.Mediators
 {
     using System;
+    using System.Linq;
 
     internal class UpdateActionMediator : AbstractLoggerMediator<UpdateActionWindow>
     {

@@ -67,8 +67,6 @@
 
             Task.Factory.StartNew(() =>
             {
-                Program.Controller = new GDocs.Controller(Program.Settings.Username, Program.Settings.Password);
-
                 var se = Program.Controller.GetSpreadsheet("LifeLogger") ??
                          Program.Controller.CreateSpreadsheet("LifeLogger");
 
