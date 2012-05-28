@@ -65,7 +65,6 @@ namespace LifeLogger.UI
             this.EmaiTextBox.Name = "EmaiTextBox";
             this.EmaiTextBox.Size = new System.Drawing.Size(137, 20);
             this.EmaiTextBox.TabIndex = 1;
-            this.EmaiTextBox.Text = "lifelogger2012@gmail.com";
             // 
             // PasswordTextBox
             // 
@@ -74,7 +73,6 @@ namespace LifeLogger.UI
             this.PasswordTextBox.PasswordChar = '*';
             this.PasswordTextBox.Size = new System.Drawing.Size(100, 20);
             this.PasswordTextBox.TabIndex = 2;
-            this.PasswordTextBox.Text = "fabiogvipjoao";
             // 
             // label1
             // 

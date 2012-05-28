@@ -10,6 +10,7 @@
 
     using Settings;
     using UI.Mediators;
+    using LifeLogger.UI;
 
     static class Program
     {
@@ -43,7 +44,11 @@
                 using (XmlReader settingsReader = new XmlTextReader("settings.xml"))
                 {
                     if (XmlSer.CanDeserialize(settingsReader))
+                    {
                         Settings = XmlSer.Deserialize(settingsReader) as LoggerSettings;
+                        Program.GetForm<SettingsWindow>().EmaiTextBox.Text = Settings.Username;
+                        Program.GetForm<SettingsWindow>().PasswordTextBox.Text = Settings.Password;
+                    }
                 }
             }
             else
