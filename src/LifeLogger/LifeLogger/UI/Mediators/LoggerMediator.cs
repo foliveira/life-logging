@@ -147,7 +147,7 @@
                     {
                         aaw.ActionTextBox.Text = actionToAdd;
                         aaw.HintTextBox.Text = String.Empty;
-                        aaw.KeyWordsTextBox.Text = String.Empty;
+                        aaw.KeyWordsTextBox.Text = String.Format("{0}, ", actionString);
                     }
 
                     EventHandler[] eh = { null };
