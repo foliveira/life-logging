@@ -94,12 +94,15 @@
 
         private ParserContext HandleLocation(IEnumerable<string> parts)
         {
-            var locationParts = parts.SkipWhile(p => !p.StartsWith("@@")).ToString();
+            var locationParts =
+                parts.SkipWhile(p => !p.StartsWith("@@"))
+                .Select(s => new String(s.SkipWhile(c => c.Equals('@')).ToArray()))  //Take out the leading @@
+                .ToArray();
 
-            if (String.IsNullOrEmpty(locationParts))
+            if (!locationParts.Any())
                 return CurrentParserContext;
 
-            CurrentParserContext.ContextLocation = String.Join(" ", locationParts.Skip(2)); //Take out the leading @@
+            CurrentParserContext.ContextLocation = String.Join(" ", locationParts);
 
             return CurrentParserContext;
         }
