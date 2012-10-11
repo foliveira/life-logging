@@ -1,8 +1,8 @@
 # Life-Logging
 
-**WORK IN PROGRESS**
+## Proof of Concept
 
-This project aims at developing a simple and unobtrusive life logger.
+This project aimed at developing a simple and unobtrusive life logger.
 
 ##Purpose
 
@@ -10,20 +10,16 @@ The Life-Logging project started in the 2011/12 [PVIM](https://fenix.ist.utl.pt/
 
 ##Installation
 
-More on that when we finally have something to show you
+Just compile it (it is a .NET application) and run the application
 
 ##Usage
 
-Just press the correct buttons in your keyboard and the life-logger window will popup on your screen
-	
-##Testing
-
-I'm sure we'll be creating some test suite to go on with this
+Just press Ctrl+Alt+L in your keyboard and the life-logger window will popup on your screen
 
 ##Authors
 
-[**Fábio Oliveira**](http://github.com/foliveira)
-[**João Dias**](http://github.com/macacao)
+[**Fabio Oliveira**](http://github.com/foliveira)
+[**Joao Dias**](http://github.com/macacao)
 
 ## License
 
